@@ -16,6 +16,7 @@ const flag = {
     char: false,
     dotFirstNumber: false,
     dotSecondNumber: false,
+    result: false
 }
 input.value = `${firstNumber} ${char} ${secondNumber}`;
 
@@ -27,7 +28,8 @@ const reset = () => {
     flag.dotSecondNumber = false;
     flag.firstNumber = false;
     flag.secondNumber = false;
-    flag.char = false
+    flag.char = false;
+    flag.result = false;
 }
 
 //listener for number
@@ -89,7 +91,7 @@ for (const element of btnChar) {
             char = element.value;
             input.value = `${firstNumber} ${char} ${secondNumber}`;
             console.log('Char:', char)
-        } else if ((result !== '') && !flag.secondNumber) {
+        } else if (flag.result && !flag.secondNumber) {
             flag.char = true;
             firstNumber = result;
             char = element.value;
@@ -101,7 +103,7 @@ for (const element of btnChar) {
 
 //listener for result
 btnResult.addEventListener('click', () => {
-    if ((firstNumber !== '') && (char !== '') && (secondNumber !== '')) {
+    if (flag.firstNumber && flag.char && flag.secondNumber) {
         switch (char) {
             case '+':
                 result = Number(firstNumber) + Number(secondNumber);
@@ -113,13 +115,14 @@ btnResult.addEventListener('click', () => {
                 result = Number(firstNumber) * Number(secondNumber);
                 break;
             case '/':
-                if (secondNumber !== '0') {
+                if (flag.secondNumber) {
                     result = Number(firstNumber) / Number(secondNumber);
                     break;
                 } else {
                     result = 'Don\'t divide by 0';
                 }
         }
+        flag.result = true;
         input.value = String(result);
         reset();
         console.log('Result:', result)
