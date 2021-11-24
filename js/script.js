@@ -5,33 +5,52 @@ const btnAC = document.querySelector('.all-clear');
 const btnDecimal = document.querySelector('.decimal');
 const input = document.querySelector('input');
 
-
 let firstNumber = '0';
 let secondNumber = '';
 let char = '';
 let result = '';
-let flagDotNum1 = false;
-let flagDotNum2 = false;
+
+const flag = {
+    firstNumber: false,
+    secondNumber: false,
+    char: false,
+    dotFirstNumber: false,
+    dotSecondNumber: false,
+}
 input.value = `${firstNumber} ${char} ${secondNumber}`;
+
+const reset = () => {
+    firstNumber = '0';
+    secondNumber = '';
+    char = '';
+    flag.dotFirstNumber = false;
+    flag.dotSecondNumber = false;
+    flag.firstNumber = false;
+    flag.secondNumber = false;
+    flag.char = false
+}
 
 //listener for number
 for (const element of btnNumber) {
     element.addEventListener('click', () => {
 
-        //first number
-        if ((char === '') && firstNumber !== '0') {
+        if (!flag.char && flag.firstNumber) {
+            flag.firstNumber = true;
             firstNumber += element.value;
             input.value = `${firstNumber} ${char} ${secondNumber}`;
             console.log('First number:', firstNumber);
-        } else if ((char === '') && firstNumber === '0') {
+        } else if (!flag.char && !flag.firstNumber) {
+            flag.firstNumber = true;
             firstNumber = element.value;
             input.value = `${firstNumber} ${char} ${secondNumber}`;
             console.log('First number:', firstNumber);
-        } else if ((char !== '') && secondNumber !== '0') {
+        } else if (flag.char && flag.secondNumber) {
+            flag.secondNumber = true;
             secondNumber += element.value;
             input.value = `${firstNumber} ${char} ${secondNumber}`;
             console.log('Second number:', secondNumber);
-        } else if ((char !== '') && secondNumber === '0') {
+        } else if (flag.char && !flag.secondNumber) {
+            flag.secondNumber = true;
             secondNumber = element.value;
             input.value = `${firstNumber} ${char} ${secondNumber}`;
             console.log('Second number:', secondNumber);
@@ -40,39 +59,38 @@ for (const element of btnNumber) {
     });
 }
 
-
 //listener for dot
 btnDecimal.addEventListener('click', () => {
 
-    //first number
-    if ((char === '') && (flagDotNum1 === false)) {
+    if (!flag.char && !flag.dotFirstNumber) {
         firstNumber += btnDecimal.value;
-        flagDotNum1 = true;
+        flag.dotFirstNumber = true;
         input.value = `${firstNumber} ${char} ${secondNumber}`;
         console.log('First number:', firstNumber);
-    } else if ((char !== '') && (flagDotNum2 === false) && (secondNumber !== '')) {
+    } else if (flag.char && !flag.dotSecondNumber && (flag.secondNumber)) {
         secondNumber += btnDecimal.value;
-        flagDotNum2 = true;
+        flag.dotSecondNumber = true;
         input.value = `${firstNumber} ${char} ${secondNumber}`;
         console.log('Second number:', secondNumber);
-    } else if ((char !== '') && (flagDotNum2 === false) && (secondNumber === '')) {
+    } else if (flag.char && !flag.dotSecondNumber && (!flag.secondNumber)) {
         secondNumber = '0';
         secondNumber += btnDecimal.value;
-        flagDotNum2 = true;
+        flag.dotSecondNumber = true;
         input.value = `${firstNumber} ${char} ${secondNumber}`;
         console.log('Second number:', secondNumber);
     }
 })
 
-
 //listener for char
 for (const element of btnChar) {
     element.addEventListener('click', () => {
-        if ((firstNumber) && (secondNumber === '')) {
+        if ((firstNumber) && !flag.secondNumber) {
+            flag.char = true;
             char = element.value;
             input.value = `${firstNumber} ${char} ${secondNumber}`;
             console.log('Char:', char)
-        } else if ((result !== '') && (secondNumber === '')) {
+        } else if ((result !== '') && !flag.secondNumber) {
+            flag.char = true;
             firstNumber = result;
             char = element.value;
             input.value = `${firstNumber} ${char} ${secondNumber}`;
@@ -80,7 +98,6 @@ for (const element of btnChar) {
         }
     });
 }
-
 
 //listener for result
 btnResult.addEventListener('click', () => {
@@ -104,25 +121,15 @@ btnResult.addEventListener('click', () => {
                 }
         }
         input.value = String(result);
-        firstNumber = '';
-        secondNumber = '';
-        char = '';
-        flagDotNum1 = false;
-        flagDotNum2 = false;
+        reset();
         console.log('Result:', result)
     }
 
 });
 
-
 //listener for AC
 btnAC.addEventListener('click', () => {
-    firstNumber = '0';
-    secondNumber = '';
-    char = '';
-    result = '';
-    flagDotNum1 = false;
-    flagDotNum2 = false;
+    reset();
     input.value = `${firstNumber} ${char} ${secondNumber}`;
     console.log('AC');
 })
