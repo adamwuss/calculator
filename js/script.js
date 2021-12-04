@@ -37,22 +37,18 @@ const numberListener = () => {
         flag.firstNumber = true;
         firstNumber += element.value;
         input.value = `${firstNumber} ${char} ${secondNumber}`;
-        console.log('First number:', firstNumber);
       } else if (!flag.char && !flag.firstNumber) {
         flag.firstNumber = true;
         firstNumber = element.value;
         input.value = `${firstNumber} ${char} ${secondNumber}`;
-        console.log('First number:', firstNumber);
       } else if (flag.char && flag.secondNumber) {
         flag.secondNumber = true;
         secondNumber += element.value;
         input.value = `${firstNumber} ${char} ${secondNumber}`;
-        console.log('Second number:', secondNumber);
       } else if (flag.char && !flag.secondNumber) {
         flag.secondNumber = true;
         secondNumber = element.value;
         input.value = `${firstNumber} ${char} ${secondNumber}`;
-        console.log('Second number:', secondNumber);
       }
     });
   }
@@ -65,20 +61,17 @@ const dotListener = () => {
       flag.firstNumber = true;
       flag.dotFirstNumber = true;
       input.value = `${firstNumber} ${char} ${secondNumber}`;
-      console.log('First number:', firstNumber);
     } else if (flag.char && !flag.dotSecondNumber && flag.secondNumber) {
       secondNumber += btnDecimal.value;
       flag.secondNumber = true;
       flag.dotSecondNumber = true;
       input.value = `${firstNumber} ${char} ${secondNumber}`;
-      console.log('Second number:', secondNumber);
     } else if (flag.char && !flag.dotSecondNumber && !flag.secondNumber) {
       secondNumber = '0';
       secondNumber += btnDecimal.value;
       flag.secondNumber = true;
       flag.dotSecondNumber = true;
       input.value = `${firstNumber} ${char} ${secondNumber}`;
-      console.log('Second number:', secondNumber);
     }
   })
 }
@@ -90,13 +83,11 @@ const charListener = () => {
         flag.char = true;
         char = element.value;
         input.value = `${firstNumber} ${char} ${secondNumber}`;
-        console.log('Char:', char)
       } else if (flag.firstNumber && flag.secondNumber) {
         this.resultReturner();
         flag.char = true;
         char = element.value;
         input.value = `${firstNumber} ${char} ${secondNumber}`;
-        console.log('Char:', char);
       }
     });
   }
@@ -104,9 +95,6 @@ const charListener = () => {
 
 const resultListener = () => {
   btnResult.addEventListener('click', () => {
-    console.log('flag.firstNumber', flag.firstNumber)
-    console.log('flag.char', flag.char)
-    console.log('flag.secondNumber', flag.secondNumber)
     this.resultReturner = () => {
       if (flag.firstNumber && flag.char && flag.secondNumber) {
         switch (char) {
@@ -132,7 +120,6 @@ const resultListener = () => {
         firstNumber = result;
         flag.firstNumber = true;
         reset();
-        console.log('Result:', result)
       }
     }
     this.resultReturner();
@@ -145,7 +132,6 @@ acListener = () => {
     flag.firstNumber = false;
     reset();
     input.value = `${firstNumber} ${char} ${secondNumber}`;
-    console.log('AC');
   })
 }
 
