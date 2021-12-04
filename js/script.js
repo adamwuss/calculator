@@ -33,7 +33,6 @@ const reset = () => {
 const numberListener = () => {
     for (const element of btnNumber) {
         element.addEventListener('click', () => {
-
             if (!flag.char && flag.firstNumber) {
                 flag.firstNumber = true;
                 firstNumber += element.value;
@@ -61,7 +60,6 @@ const numberListener = () => {
 
 const dotListener = () => {
     btnDecimal.addEventListener('click', () => {
-
         if (!flag.char && !flag.dotFirstNumber) {
             firstNumber += btnDecimal.value;
             flag.firstNumber = true;
@@ -88,17 +86,17 @@ const dotListener = () => {
 const charListener = () => {
     for (const element of btnChar) {
         element.addEventListener('click', () => {
-            if (firstNumber && !flag.secondNumber) {
+            if (flag.firstNumber && !flag.secondNumber) {
                 flag.char = true;
                 char = element.value;
                 input.value = `${firstNumber} ${char} ${secondNumber}`;
                 console.log('Char:', char)
-            } else if (flag.result && !flag.secondNumber) {
+            } else if (flag.firstNumber && flag.secondNumber) {
+                this.resultReturner();
                 flag.char = true;
-                firstNumber = result;
                 char = element.value;
                 input.value = `${firstNumber} ${char} ${secondNumber}`;
-                console.log('Char:', char)
+                console.log('Char:', char);
             }
         });
     }
@@ -109,32 +107,35 @@ const resultListener = () => {
         console.log('flag.firstNumber', flag.firstNumber)
         console.log('flag.char', flag.char)
         console.log('flag.secondNumber', flag.secondNumber)
-        if (flag.firstNumber && flag.char && flag.secondNumber) {
-            switch (char) {
-                case '+':
-                    result = Number(firstNumber) + Number(secondNumber);
-                    break;
-                case '-':
-                    result = Number(firstNumber) - Number(secondNumber);
-                    break;
-                case '*':
-                    result = Number(firstNumber) * Number(secondNumber);
-                    break;
-                case '/':
-                    if (flag.secondNumber) {
-                        result = Number(firstNumber) / Number(secondNumber);
+        this.resultReturner = () => {
+            if (flag.firstNumber && flag.char && flag.secondNumber) {
+                switch (char) {
+                    case '+':
+                        result = Number(firstNumber) + Number(secondNumber);
                         break;
-                    } else {
-                        result = 'Don\'t divide by 0';
-                    }
+                    case '-':
+                        result = Number(firstNumber) - Number(secondNumber);
+                        break;
+                    case '*':
+                        result = Number(firstNumber) * Number(secondNumber);
+                        break;
+                    case '/':
+                        if (flag.secondNumber) {
+                            result = Number(firstNumber) / Number(secondNumber);
+                            break;
+                        } else {
+                            result = 'Don\'t divide by 0';
+                        }
+                }
+                flag.result = true;
+                input.value = String(result);
+                firstNumber = result;
+                flag.firstNumber = true;
+                reset();
+                console.log('Result:', result)
             }
-            flag.result = true;
-            input.value = String(result);
-            firstNumber = result;
-            flag.firstNumber = true;
-            reset();
-            console.log('Result:', result)
         }
+        this.resultReturner();
     });
 }
 
