@@ -8,6 +8,12 @@ const charListener = (starterData, flag) => {
         flag.char = true;
         starterData.char = element.value;
         input.value = `${starterData.firstNumber} ${starterData.char} ${starterData.secondNumber}`;
+      } else if (!flag.firstNumber && !flag.secondNumber){
+        flag.firstNumber = true;
+        starterData.firstNumber = '0';
+        flag.char = true;
+        starterData.char = element.value;
+        input.value = `${starterData.firstNumber} ${starterData.char} ${starterData.secondNumber}`;
       } else if (flag.firstNumber && flag.secondNumber) {
         resultReturner(starterData, flag);
         flag.char = true;
