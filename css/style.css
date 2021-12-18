@@ -38,6 +38,10 @@
       font-size: 2rem!important;
     }
 
+    button:hover {
+        transform: scale(1.05);
+    }
+
     .equal-sign {
       height: 100%;
       grid-area: 2 / 4 / 6 / 5;
