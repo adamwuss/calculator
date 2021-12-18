@@ -2,7 +2,9 @@ import { input } from '../buttons/buttons.js';
 import { reset } from './reset.js';
 
 const resultReturner = (starterData, flag) => {
-  if (flag.firstNumber && flag.char && flag.secondNumber) {
+  const allDataRequired = flag.firstNumber && flag.char && flag.secondNumber;
+
+  if (allDataRequired) {
     switch (starterData.char) {
       case '+':
         starterData.result = Number(starterData.firstNumber) + Number(starterData.secondNumber);
@@ -14,18 +16,14 @@ const resultReturner = (starterData, flag) => {
         starterData.result = Number(starterData.firstNumber) * Number(starterData.secondNumber);
         break;
       case '/':
-        if (starterData.secondNumber !== '0') {
-          starterData.result = Number(starterData.firstNumber) / Number(starterData.secondNumber);
-          break;
-        } else {
-          starterData.result = 'Don\'t divide by 0';
-        }
+        starterData.result = starterData.secondNumber !== '0' ? Number(starterData.firstNumber) / Number(starterData.secondNumber) : 'Don\'t divide by 0';
     }
-    flag.result = true;
     input.value = String(starterData.result);
-    starterData.firstNumber = starterData.result;
-    flag.firstNumber = true;
+
     reset(starterData, flag);
+    starterData.firstNumber = starterData.result
+    flag.result = true;
+    flag.firstNumber = true;
   }
 }
 

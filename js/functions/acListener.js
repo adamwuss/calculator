@@ -4,8 +4,9 @@ import { reset } from './reset.js';
 const acListener = (starterData, flag) => {
   btnAC.addEventListener('click', () => {
     starterData.firstNumber = '0'
-    flag.firstNumber = false;
     reset(starterData, flag);
+    flag.firstNumber = false;
+
     input.value = `${starterData.firstNumber} ${starterData.char} ${starterData.secondNumber}`;
   })
 }
