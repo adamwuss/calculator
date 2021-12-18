@@ -1,90 +1,88 @@
- html {
-      font-size: 62.5%;
-      box-sizing: border-box;
-    }
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
 
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: inherit;
-    }
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
 
-    .calculator {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
-    }
+.calculator {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+}
 
-    .calculator-screen {
-      width: 100%;
-      height: 80px;
-      border: none;
-      background-color: #252525;
-      color: #fff;
-      text-align: right;
-      padding-right: 20px;
-      padding-left: 10px;
-      font-size: 4rem;
-    }
+.calculator-screen {
+  width: 100%;
+  height: 80px;
+  border: none;
+  background-color: #252525;
+  color: #fff;
+  text-align: right;
+  padding-right: 20px;
+  padding-left: 10px;
+  font-size: 4rem;
+}
 
-    button {
-      height: 60px;
-      font-size: 2rem!important;
-    }
+button {
+  height: 60px;
+  font-size: 2rem!important;
+}
 
-    button:hover {
-        transform: scale(1.05);
-    }
+button:hover {
+    transform: scale(1.05);
+}
 
-    .equal-sign {
-      height: 100%;
-      grid-area: 2 / 4 / 6 / 5;
-    }
+.equal-sign {
+  height: 100%;
+  grid-area: 2 / 4 / 6 / 5;
+}
 
-    .calculator-keys {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-gap: 20px;
-      padding: 20px;
-    }
+.calculator-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+}
 
-    .btn {
-      cursor: pointer;
-      border: none; 
-    }
+.btn {
+  cursor: pointer;
+  border: none;
+}
 
-    .btn:hover {
-      box-shadow: 0 0 0.3em -0.1em #252525;
-     }
+.btn:hover {
+  box-shadow: 0 0 0.3em -0.1em #252525;
+ }
 
-    .btn-info {
-     background-color: #33B5E5;
-      color: white;
-    }
+.btn-info {
+ background-color: #33B5E5;
+  color: white;
+}
 
-    .btn-light {
-      background-color: #E0E0E0;
-    }
+.btn-light {
+  background-color: #E0E0E0;
+}
 
-    .btn-secondary {
-      color: white  ;
-      background-color: #AA66CC;
-    }
+.btn-secondary {
+  color: white  ;
+  background-color: #AA66CC;
+}
 
-    .btn-sm {
-      color: white;
-      background-color: #FF3547; 
-    }
+.btn-sm {
+  color: white;
+  background-color: #FF3547;
+}
 
-    .btn-default {
-      color: white;
-      background-color: #2BBBAD;
-    }
-
-   
+.btn-default {
+  color: white;
+  background-color: #2BBBAD;
+}
