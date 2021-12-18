@@ -18,10 +18,10 @@ const resultReturner = (starterData, flag) => {
       case '/':
         starterData.result = starterData.secondNumber !== '0' ? Number(starterData.firstNumber) / Number(starterData.secondNumber) : 'Don\'t divide by 0';
     }
-    input.value = String(starterData.result);
+    input.value = String(starterData.result) + ' ' + ' ';
 
     reset(starterData, flag);
-    starterData.firstNumber = isNaN(starterData.result) ? '0' : starterData.result
+    starterData.firstNumber = isNaN(starterData.result) ? '0' : String(starterData.result)
     flag.result = true;
     flag.firstNumber = true;
   }
