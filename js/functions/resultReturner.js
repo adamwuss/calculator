@@ -21,7 +21,7 @@ const resultReturner = (starterData, flag) => {
     input.value = String(starterData.result);
 
     reset(starterData, flag);
-    starterData.firstNumber = starterData.result
+    starterData.firstNumber = isNaN(starterData.result) ? '0' : starterData.result
     flag.result = true;
     flag.firstNumber = true;
   }
